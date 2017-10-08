@@ -9,35 +9,34 @@ import java.util.regex.Pattern;
 public class NumberValidator {
     private NumberValidator(){}
     public static  boolean isValidNumber(Object value){
-        String valueType = value.getClass().getName();
-        if(valueType.contains("Double")){
-            if ((Double)value > 0.0D){
-                return true;
+        try {
+            String valueType = value.getClass().getName();
+            if (value instanceof Number) {
+                if (valueType.contains("Double")) {
+                    if ((Double) value > 0.0D) {
+                        return true;
+                    }
+                } else if (valueType.contains("Float")) {
+                    if ((Float) value > 0.0F) {
+                        return true;
+                    }
+                } else if (valueType.contains("Integer")) {
+                    if ((Integer) value > 0) {
+                        return true;
+                    }
+                }
             }
-        }
-        else if(valueType.contains("Float")){
-            if((Float)value > 0.0F){
-                return true;
+            else if (valueType.contains("String")) {
+                try {
+                    return Double.parseDouble((String)value) > 0;
+                }
+                catch (NumberFormatException e){
+                    return false;
+                }
             }
-        }
-        else if(valueType.contains("Integer")){
-            if((Integer)value > 0){
-                return true;
-            }
-        }
-        else if(valueType.contains("String")){
-
-            Pattern p1 = Pattern.compile("[^0-9]");
-            Matcher m1 = p1.matcher((String)value);
-            if(m1.matches()){
-                System.out.println("suka");
-                return false;
-            }
-            else {
-                return true;
-            }
-
-        }
+        }catch (ClassCastException e){
+            return false;
+    }
         return false;
     }
 }
