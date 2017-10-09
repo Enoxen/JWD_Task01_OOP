@@ -11,25 +11,25 @@ public class LaptopValidator {
 
     public static <E> boolean isValidLaptop(Criteria<E> criteria){
         for (Object key : criteria.getAllCriteria().keySet()){
-            if(key.equals(SearchCriteria.Laptop.BATTERY_CAPACITY)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Laptop.BATTERY_CAPACITY) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
-            if(key.equals(SearchCriteria.Laptop.CPU)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Laptop.CPU) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
-            if(key.equals(SearchCriteria.Laptop.DISPLAY_INCHS)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Laptop.DISPLAY_INCHS) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
-            if(key.equals(SearchCriteria.Laptop.MEMORY_ROM)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Laptop.MEMORY_ROM) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
-            if(key.equals(SearchCriteria.Laptop.SYSTEM_MEMORY)){
-                return  NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Laptop.SYSTEM_MEMORY) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false ;
             }
-            if(key.equals(SearchCriteria.Laptop.OS)){
-                return StringValidator.isValidString(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Laptop.OS) && !StringValidator.isValidString(criteria.getAllCriteria().get(key))){
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }

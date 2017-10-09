@@ -10,27 +10,24 @@ public class Validator {
 			return false;
 		}
 		String criteriaType = criteria.getAllCriteria().keySet().iterator().next().getClass().getName();
-		if(criteriaType.contains("SearchCriteria$Laptop") && LaptopValidator.isValidLaptop(criteria))
+		if(criteriaType.contains("SearchCriteria$Laptop") && !LaptopValidator.isValidLaptop(criteria))
 		{
-			System.out.println("Laptop");
+			return false;
 		}
-		else if(criteriaType.contains("SearchCriteria$Oven")){
-			System.out.println("Oven");
+		else if(criteriaType.contains("SearchCriteria$Oven") && !OvenValidator.isValidOven(criteria)){
+			return false;
 		}
-		else if(criteriaType.contains("SearchCriteria$Refrigerator")){
-			System.out.println("Refrigerator");
+		else if(criteriaType.contains("SearchCriteria$Refrigerator") && !RefrigeratorValidator.isValidRefrigerator(criteria)){
+			return false;
 		}
-		else if(criteriaType.contains("SearchCriteria$Speakers")){
-			System.out.println("Speakers");
+		else if(criteriaType.contains("SearchCriteria$Speakers") && !SpeakersValidator.isValidSpeakers(criteria)){
+			return false;
 		}
-		else if(criteriaType.contains("SearchCriteria$TabletPC")){
-			System.out.println("TabletPC");
+		else if(criteriaType.contains("SearchCriteria$TabletPC") && !TabletPCValidator.isValidTabletPC(criteria)){
+			return false;
 		}
-		else if(criteriaType.contains("SearchCriteria$VacuumCleaner")){
-			System.out.println("VacuumCleaner");
-		}
-		else {
-			System.out.println("kek");
+		else if(criteriaType.contains("SearchCriteria$VacuumCleaner") && !VacuumCleanerValidator.isValidVacuumCleaner(criteria) ){
+			return false;
 		}
 		return true;
 	}

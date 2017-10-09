@@ -48,11 +48,10 @@ public class Main {
 
 		PrintApplianceInfo.print(appliance);*/
 		Criteria<Laptop> criteriaOven = new Criteria<Laptop>();
-		criteriaOven.add(Laptop.BATTERY_CAPACITY, "10");
-		criteriaOven.add(Laptop.OS, "Windows");
-		Validator.criteriaValidator(criteriaOven);
-
-
+		criteriaOven.add(Laptop.BATTERY_CAPACITY, 1);
+		criteriaOven.add(Laptop.OS, "1");
+		criteriaOven.add(Laptop.CPU, "0100");
+		System.out.println(Validator.criteriaValidator(criteriaOven));
 	}
 
 }

@@ -10,25 +10,25 @@ public class OvenValidator{
     private OvenValidator(){}
     public static <E> boolean isValidOven(Criteria<E> criteria){
         for(Object key : criteria.getAllCriteria().keySet()){
-            if(key.equals(SearchCriteria.Oven.CAPACITY)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Oven.CAPACITY) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
-            if(key.equals(SearchCriteria.Oven.DEPTH)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Oven.DEPTH) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
-            if(key.equals(SearchCriteria.Oven.HEIGHT)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Oven.HEIGHT) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
-            if(key.equals(SearchCriteria.Oven.POWER_CONSUMPTION)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Oven.POWER_CONSUMPTION) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
-            if(key.equals(SearchCriteria.Oven.WEIGHT)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Oven.WEIGHT) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
-            if(key.equals(SearchCriteria.Oven.WIDTH)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Oven.WIDTH) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }

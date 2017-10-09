@@ -28,7 +28,7 @@ public class NumberValidator {
             }
             else if (valueType.contains("String")) {
                 try {
-                    return Double.parseDouble((String)value) > 0;
+                    return Double.parseDouble((String) value) > 0;
                 }
                 catch (NumberFormatException e){
                     return false;

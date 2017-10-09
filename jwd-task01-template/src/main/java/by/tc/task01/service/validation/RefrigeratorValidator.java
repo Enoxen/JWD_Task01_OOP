@@ -11,25 +11,25 @@ public class RefrigeratorValidator {
     private RefrigeratorValidator(){}
     public static <E> boolean isValidRefrigerator(Criteria<E> criteria){
         for(Object key : criteria.getAllCriteria().keySet()){
-            if(key.equals(SearchCriteria.Refrigerator.FREEZER_CAPACITY)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Refrigerator.FREEZER_CAPACITY) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
-            if(key.equals(SearchCriteria.Refrigerator.HEIGHT)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Refrigerator.HEIGHT) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
-            if(key.equals(SearchCriteria.Refrigerator.OVERALL_CAPACITY)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Refrigerator.OVERALL_CAPACITY) &&!NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
-            if(key.equals(SearchCriteria.Refrigerator.POWER_CONSUMPTION)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Refrigerator.POWER_CONSUMPTION) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
-            if(key.equals(SearchCriteria.Refrigerator.WEIGHT)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Refrigerator.WEIGHT) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
-            if(key.equals(SearchCriteria.Refrigerator.WIDTH)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Refrigerator.WIDTH) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }

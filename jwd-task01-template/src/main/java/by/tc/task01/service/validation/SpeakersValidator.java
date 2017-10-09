@@ -10,30 +10,29 @@ public class SpeakersValidator {
     private SpeakersValidator(){}
     public static <E> boolean isValidSpeakers(Criteria<E> criteria){
         for(Object key : criteria.getAllCriteria().keySet()){
-            if(key.equals(SearchCriteria.Speakers.NUMBER_OF_SPEAKERS)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Speakers.NUMBER_OF_SPEAKERS) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
-            if(key.equals(SearchCriteria.Speakers.CORD_LENGTH)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Speakers.CORD_LENGTH) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
             if(key.equals(SearchCriteria.Speakers.FREQUENCY_RANGE)){
                 if(((String)criteria.getAllCriteria().get(key)).contains("-")){
                     String []frequencyStr = ((String) criteria.getAllCriteria().get(key)).split("-");
                     try {
-                        if (Double.parseDouble(frequencyStr[0]) > 0 && Double.parseDouble(frequencyStr[1]) > 0){
-                            return true;
+                        if (!(Double.parseDouble(frequencyStr[0]) > 0 && Double.parseDouble(frequencyStr[1]) > 0)){
+                            return false;
                         }
-                        else return false;
                     }
                     catch (NumberFormatException e){
                         e.printStackTrace();
                     }
                 }
             }
-            if(key.equals(SearchCriteria.Speakers.POWER_CONSUMPTION)){
-                return NumberValidator.isValidNumber(criteria.getAllCriteria().get(key));
+            if(key.equals(SearchCriteria.Speakers.POWER_CONSUMPTION) && !NumberValidator.isValidNumber(criteria.getAllCriteria().get(key))){
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }
