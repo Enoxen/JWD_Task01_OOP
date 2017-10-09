@@ -3,7 +3,7 @@ package by.tc.task01.entity;
 import java.io.Serializable;
 
 public class Refrigerator extends Appliance implements Serializable{
-    private int powerConsumption;
+    private int powerConsumption;//
     private float weight;
     private float freezerCapacity;
     private float overallCapacity;
