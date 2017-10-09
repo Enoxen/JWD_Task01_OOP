@@ -3,7 +3,7 @@ package by.tc.task01.entity;
 import java.io.Serializable;
 
 public class Oven extends Appliance implements Serializable{
-	private int powerConsumption;//
+	private int powerConsumption;
     private float weight;
     private int capacity;
     private float depth;
