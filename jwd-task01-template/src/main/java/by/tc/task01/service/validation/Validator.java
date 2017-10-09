@@ -1,7 +1,6 @@
 package by.tc.task01.service.validation;
 
 import by.tc.task01.entity.criteria.Criteria;
-import by.tc.task01.entity.criteria.SearchCriteria;
 
 public class Validator {
 	
@@ -10,8 +9,7 @@ public class Validator {
 			return false;
 		}
 		String criteriaType = criteria.getAllCriteria().keySet().iterator().next().getClass().getName();
-		if(criteriaType.contains("SearchCriteria$Laptop") && !LaptopValidator.isValidLaptop(criteria))
-		{
+		if(criteriaType.contains("SearchCriteria$Laptop") && !LaptopValidator.isValidLaptop(criteria)) {
 			return false;
 		}
 		else if(criteriaType.contains("SearchCriteria$Oven") && !OvenValidator.isValidOven(criteria)){
@@ -32,4 +30,3 @@ public class Validator {
 		return true;
 	}
 }
-//you may add your own new classes
