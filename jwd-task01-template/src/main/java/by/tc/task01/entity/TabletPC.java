@@ -24,6 +24,30 @@ public class TabletPC extends Appliance implements Serializable{
         + ", Color = " + this.color);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TabletPC)) return false;
+
+        TabletPC tabletPC = (TabletPC) o;
+
+        if (batteryCapacity != tabletPC.batteryCapacity) return false;
+        if (Float.compare(tabletPC.displayInches, displayInches) != 0) return false;
+        if (memoryRom != tabletPC.memoryRom) return false;
+        if (flashMemoryCap != tabletPC.flashMemoryCap) return false;
+        return color != null ? color.equals(tabletPC.color) : tabletPC.color == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = batteryCapacity;
+        result = 31 * result + (displayInches != +0.0f ? Float.floatToIntBits(displayInches) : 0);
+        result = 31 * result + memoryRom;
+        result = 31 * result + flashMemoryCap;
+        result = 31 * result + (color != null ? color.hashCode() : 0);
+        return result;
+    }
+
     public int getBatteryCapacity() {
         return batteryCapacity;
     }

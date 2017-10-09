@@ -27,6 +27,33 @@ public class Refrigerator extends Appliance implements Serializable{
         ", Height = " + this.height + ", Width = " + this.width);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Refrigerator)) return false;
+
+        Refrigerator that = (Refrigerator) o;
+
+        if (powerConsumption != that.powerConsumption) return false;
+        if (Float.compare(that.weight, weight) != 0) return false;
+        if (Float.compare(that.freezerCapacity, freezerCapacity) != 0) return false;
+        if (Float.compare(that.overallCapacity, overallCapacity) != 0) return false;
+        if (Float.compare(that.height, height) != 0) return false;
+        return Float.compare(that.width, width) == 0;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = powerConsumption;
+        result = 31 * result + (weight != +0.0f ? Float.floatToIntBits(weight) : 0);
+        result = 31 * result + (freezerCapacity != +0.0f ? Float.floatToIntBits(freezerCapacity) : 0);
+        result = 31 * result + (overallCapacity != +0.0f ? Float.floatToIntBits(overallCapacity) : 0);
+        result = 31 * result + (height != +0.0f ? Float.floatToIntBits(height) : 0);
+        result = 31 * result + (width != +0.0f ? Float.floatToIntBits(width) : 0);
+        return result;
+    }
+
     public int getPowerConsumption() {
         return powerConsumption;
     }
