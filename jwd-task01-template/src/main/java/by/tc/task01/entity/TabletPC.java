@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 public class TabletPC extends Appliance implements Serializable{
 	private int batteryCapacity;
-    private float displayInches;
+    private double displayInches;
     private int memoryRom;
     private int flashMemoryCap;
     private String color;
 
     public TabletPC(){}
-    public TabletPC(int batteryCapacity, float displayInches, int memoryRom, int flashMemoryCap, String color){
+    public TabletPC(int batteryCapacity, double displayInches, int memoryRom, int flashMemoryCap, String color){
         this.batteryCapacity = batteryCapacity;
         this.displayInches = displayInches;
         this.memoryRom = memoryRom;
@@ -32,16 +32,20 @@ public class TabletPC extends Appliance implements Serializable{
         TabletPC tabletPC = (TabletPC) o;
 
         if (batteryCapacity != tabletPC.batteryCapacity) return false;
-        if (Float.compare(tabletPC.displayInches, displayInches) != 0) return false;
+        if (Double.compare(tabletPC.displayInches, displayInches) != 0) return false;
         if (memoryRom != tabletPC.memoryRom) return false;
         if (flashMemoryCap != tabletPC.flashMemoryCap) return false;
         return color != null ? color.equals(tabletPC.color) : tabletPC.color == null;
+
     }
 
     @Override
     public int hashCode() {
-        int result = batteryCapacity;
-        result = 31 * result + (displayInches != +0.0f ? Float.floatToIntBits(displayInches) : 0);
+        int result;
+        long temp;
+        result = batteryCapacity;
+        temp = Double.doubleToLongBits(displayInches);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + memoryRom;
         result = 31 * result + flashMemoryCap;
         result = 31 * result + (color != null ? color.hashCode() : 0);
@@ -56,11 +60,11 @@ public class TabletPC extends Appliance implements Serializable{
         this.batteryCapacity = batteryCapacity;
     }
 
-    public float getDisplayInches() {
+    public double getDisplayInches() {
         return displayInches;
     }
 
-    public void setDisplayInches(float displayInches) {
+    public void setDisplayInches(double displayInches) {
         this.displayInches = displayInches;
     }
 

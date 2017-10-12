@@ -6,10 +6,10 @@ public class Speakers extends Appliance implements Serializable{
 	private int powerConsumption;
     private int numberOfSpeakers;
     private String frequencyRange;
-    private float cordLength;
+    private double cordLength;
 
     public Speakers(){}
-    public Speakers(int powerConsumption, int numberOfSpeakers, String frequencyRange, float cordLength){
+    public Speakers(int powerConsumption, int numberOfSpeakers, String frequencyRange, double cordLength){
         this.powerConsumption = powerConsumption;
         this.numberOfSpeakers = numberOfSpeakers;
         this.frequencyRange = frequencyRange;
@@ -30,17 +30,20 @@ public class Speakers extends Appliance implements Serializable{
 
         if (powerConsumption != speakers.powerConsumption) return false;
         if (numberOfSpeakers != speakers.numberOfSpeakers) return false;
-        if (Float.compare(speakers.cordLength, cordLength) != 0) return false;
+        if (Double.compare(speakers.cordLength, cordLength) != 0) return false;
         return frequencyRange != null ? frequencyRange.equals(speakers.frequencyRange) : speakers.frequencyRange == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = powerConsumption;
+        int result;
+        long temp;
+        result = powerConsumption;
         result = 31 * result + numberOfSpeakers;
         result = 31 * result + (frequencyRange != null ? frequencyRange.hashCode() : 0);
-        result = 31 * result + (cordLength != +0.0f ? Float.floatToIntBits(cordLength) : 0);
+        temp = Double.doubleToLongBits(cordLength);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 
@@ -68,11 +71,11 @@ public class Speakers extends Appliance implements Serializable{
         this.frequencyRange = frequencyRange;
     }
 
-    public float getCordLength() {
+    public double getCordLength() {
         return cordLength;
     }
 
-    public void setCordLength(float cordLength) {
+    public void setCordLength(double cordLength) {
         this.cordLength = cordLength;
     }
 }

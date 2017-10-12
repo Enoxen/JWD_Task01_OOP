@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 public class Oven extends Appliance implements Serializable{
 	private int powerConsumption;
-    private float weight;
+    private double weight;
     private int capacity;
-    private float depth;
-    private float height;
-    private float width;
+    private double depth;
+    private double height;
+    private double width;
 
     public Oven(){}
-    public Oven(int powerConsumption, float weight, int capacity, float  depth, float height, float width){
+    public Oven(int powerConsumption, double weight, int capacity, double depth, double height, double width){
         this.powerConsumption = powerConsumption;
         this.weight = weight;
         this.capacity = capacity;
@@ -34,22 +34,28 @@ public class Oven extends Appliance implements Serializable{
         Oven oven = (Oven) o;
 
         if (powerConsumption != oven.powerConsumption) return false;
-        if (Float.compare(oven.weight, weight) != 0) return false;
+        if (Double.compare(oven.weight, weight) != 0) return false;
         if (capacity != oven.capacity) return false;
-        if (Float.compare(oven.depth, depth) != 0) return false;
-        if (Float.compare(oven.height, height) != 0) return false;
-        return Float.compare(oven.width, width) == 0;
+        if (Double.compare(oven.depth, depth) != 0) return false;
+        if (Double.compare(oven.height, height) != 0) return false;
+        return Double.compare(oven.width, width) == 0;
 
     }
 
     @Override
     public int hashCode() {
-        int result = powerConsumption;
-        result = 31 * result + (weight != +0.0f ? Float.floatToIntBits(weight) : 0);
+        int result;
+        long temp;
+        result = powerConsumption;
+        temp = Double.doubleToLongBits(weight);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + capacity;
-        result = 31 * result + (depth != +0.0f ? Float.floatToIntBits(depth) : 0);
-        result = 31 * result + (height != +0.0f ? Float.floatToIntBits(height) : 0);
-        result = 31 * result + (width != +0.0f ? Float.floatToIntBits(width) : 0);
+        temp = Double.doubleToLongBits(depth);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(height);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(width);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 
@@ -61,11 +67,11 @@ public class Oven extends Appliance implements Serializable{
         this.powerConsumption = powerConsumption;
     }
 
-    public float getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(float weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
@@ -77,27 +83,27 @@ public class Oven extends Appliance implements Serializable{
         this.capacity = capacity;
     }
 
-    public float getDepth() {
+    public double getDepth() {
         return depth;
     }
 
-    public void setDepth(float depth) {
+    public void setDepth(double depth) {
         this.depth = depth;
     }
 
-    public float getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(float height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
-    public float getWidth() {
+    public double getWidth() {
         return width;
     }
 
-    public void setWidth(float width) {
+    public void setWidth(double width) {
         this.width = width;
     }
 }

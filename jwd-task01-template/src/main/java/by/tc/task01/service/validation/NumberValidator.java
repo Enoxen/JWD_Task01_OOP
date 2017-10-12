@@ -1,12 +1,18 @@
 package by.tc.task01.service.validation;
 
+import by.tc.task01.service.ServiceCommand.ValidationCommand;
 
 /**
- * Created by Y50-70 on 07.10.2017.
+ * Created by Y50-70 on 12.10.2017.
  */
-public class NumberValidator {
-    private NumberValidator(){}
-    public static  boolean isValidNumber(Object value){
+public class NumberValidator implements ValidationCommand{
+    public NumberValidator(){}
+
+    @Override
+    public boolean execute(Object value){
+        return isValidNumber(value);
+    }
+    public  boolean isValidNumber(Object value){
         try {
             String valueType = value.getClass().getName();
             if (value instanceof Number) {
@@ -34,7 +40,7 @@ public class NumberValidator {
             }
         }catch (ClassCastException e){
             return false;
-    }
+        }
         return false;
     }
 }

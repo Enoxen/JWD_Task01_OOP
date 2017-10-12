@@ -1,6 +1,7 @@
 package by.tc.task01.service.validation;
 
 import by.tc.task01.entity.criteria.Criteria;
+import by.tc.task01.service.ServiceCommand.ValidationDirector;
 
 public class Validator {
 	
@@ -8,24 +9,11 @@ public class Validator {
 		if(criteria == null || !criteria.getAllCriteria().keySet().iterator().hasNext()){
 			return false;
 		}
-		String criteriaType = criteria.getAllCriteria().keySet().iterator().next().getClass().getName();
-		if(criteriaType.contains("SearchCriteria$Laptop") && !LaptopValidator.isValidLaptop(criteria)) {
-			return false;
-		}
-		else if(criteriaType.contains("SearchCriteria$Oven") && !OvenValidator.isValidOven(criteria)){
-			return false;
-		}
-		else if(criteriaType.contains("SearchCriteria$Refrigerator") && !RefrigeratorValidator.isValidRefrigerator(criteria)){
-			return false;
-		}
-		else if(criteriaType.contains("SearchCriteria$Speakers") && !SpeakersValidator.isValidSpeakers(criteria)){
-			return false;
-		}
-		else if(criteriaType.contains("SearchCriteria$TabletPC") && !TabletPCValidator.isValidTabletPC(criteria)){
-			return false;
-		}
-		else if(criteriaType.contains("SearchCriteria$VacuumCleaner") && !VacuumCleanerValidator.isValidVacuumCleaner(criteria) ){
-			return false;
+		ValidationDirector director = new ValidationDirector();
+		for(Object key : criteria.getAllCriteria().keySet()){
+			if(!director.getCommand(key.toString()).execute(criteria.getAllCriteria().get(key))){
+				return false;
+			}
 		}
 		return true;
 	}

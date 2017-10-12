@@ -3,16 +3,16 @@ package by.tc.task01.entity;
 import java.io.Serializable;
 
 public class Refrigerator extends Appliance implements Serializable{
-    private int powerConsumption;//
-    private float weight;
-    private float freezerCapacity;
-    private float overallCapacity;
-    private float height;
-    private float width;
+    private int powerConsumption;
+    private double weight;
+    private double freezerCapacity;
+    private double overallCapacity;
+    private double height;
+    private double width;
 
     public Refrigerator(){}
-    public Refrigerator(int powerConsumption, float weight, float freezerCapacity, float overallCapacity, float height,
-                        float width){
+    public Refrigerator(int powerConsumption, double weight, double freezerCapacity, double overallCapacity, double height,
+                        double width){
         this.powerConsumption = powerConsumption;
         this.weight = weight;
         this.freezerCapacity = freezerCapacity;
@@ -35,22 +35,29 @@ public class Refrigerator extends Appliance implements Serializable{
         Refrigerator that = (Refrigerator) o;
 
         if (powerConsumption != that.powerConsumption) return false;
-        if (Float.compare(that.weight, weight) != 0) return false;
-        if (Float.compare(that.freezerCapacity, freezerCapacity) != 0) return false;
-        if (Float.compare(that.overallCapacity, overallCapacity) != 0) return false;
-        if (Float.compare(that.height, height) != 0) return false;
-        return Float.compare(that.width, width) == 0;
+        if (Double.compare(that.weight, weight) != 0) return false;
+        if (Double.compare(that.freezerCapacity, freezerCapacity) != 0) return false;
+        if (Double.compare(that.overallCapacity, overallCapacity) != 0) return false;
+        if (Double.compare(that.height, height) != 0) return false;
+        return Double.compare(that.width, width) == 0;
 
     }
 
     @Override
     public int hashCode() {
-        int result = powerConsumption;
-        result = 31 * result + (weight != +0.0f ? Float.floatToIntBits(weight) : 0);
-        result = 31 * result + (freezerCapacity != +0.0f ? Float.floatToIntBits(freezerCapacity) : 0);
-        result = 31 * result + (overallCapacity != +0.0f ? Float.floatToIntBits(overallCapacity) : 0);
-        result = 31 * result + (height != +0.0f ? Float.floatToIntBits(height) : 0);
-        result = 31 * result + (width != +0.0f ? Float.floatToIntBits(width) : 0);
+        int result;
+        long temp;
+        result = powerConsumption;
+        temp = Double.doubleToLongBits(weight);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(freezerCapacity);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(overallCapacity);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(height);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(width);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 
@@ -62,43 +69,43 @@ public class Refrigerator extends Appliance implements Serializable{
         this.powerConsumption = powerConsumption;
     }
 
-    public float getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(float weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
-    public float getFreezerCapacity() {
+    public double getFreezerCapacity() {
         return freezerCapacity;
     }
 
-    public void setFreezerCapacity(float freezerCapacity) {
+    public void setFreezerCapacity(double freezerCapacity) {
         this.freezerCapacity = freezerCapacity;
     }
 
-    public float getOverallCapacity() {
+    public double getOverallCapacity() {
         return overallCapacity;
     }
 
-    public void setOverallCapacity(float overallCapacity) {
+    public void setOverallCapacity(double overallCapacity) {
         this.overallCapacity = overallCapacity;
     }
 
-    public float getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(float height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
-    public float getWidth() {
+    public double getWidth() {
         return width;
     }
 
-    public void setWidth(float width) {
+    public void setWidth(double width) {
         this.width = width;
     }
 }

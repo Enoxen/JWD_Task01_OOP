@@ -5,6 +5,7 @@ import static by.tc.task01.entity.criteria.SearchCriteria.*;
 import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.criteria.Criteria;
 import by.tc.task01.service.ApplianceService;
+import by.tc.task01.service.ServiceCommand.ValidationCommand;
 import by.tc.task01.service.ServiceFactory;
 import by.tc.task01.service.validation.Validator;
 
@@ -47,11 +48,13 @@ public class Main {
 		appliance = service.find(criteriaOven);
 
 		PrintApplianceInfo.print(appliance);*/
-		Criteria<Laptop> criteriaOven = new Criteria<Laptop>();
-		criteriaOven.add(Laptop.BATTERY_CAPACITY, 1);
-		criteriaOven.add(Laptop.OS, "1");
-		criteriaOven.add(Laptop.CPU, "0100");
-		System.out.println(Validator.criteriaValidator(criteriaOven));
+		Appliance appliance;
+		ServiceFactory factory = ServiceFactory.getInstance();
+		ApplianceService service = factory.getApplianceService();
+		Criteria<Speakers> criteriaSpeakers = new Criteria<Speakers>();
+		criteriaSpeakers.add(Speakers.FREQUENCY_RANGE,"3-5");
+		criteriaSpeakers.add(Speakers.CORD_LENGTH, 5);
+		System.out.println(Validator.criteriaValidator(criteriaSpeakers));
 	}
 
 }

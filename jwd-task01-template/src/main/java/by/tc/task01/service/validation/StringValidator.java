@@ -1,12 +1,18 @@
 package by.tc.task01.service.validation;
 
-/**
- * Created by Y50-70 on 07.10.2017.
- */
-public class StringValidator {
-    private StringValidator(){}
+import by.tc.task01.service.ServiceCommand.ValidationCommand;
 
-    public static boolean isValidString(Object value){
-        return value instanceof String && !value.equals("") || value instanceof Character;
+/**
+ * Created by Y50-70 on 12.10.2017.
+ */
+public class StringValidator implements ValidationCommand{
+        public StringValidator(){}
+        @Override
+        public boolean execute(Object value){
+            return isValidString(value);
+        }
+        public boolean isValidString(Object value){
+            return value instanceof String && !value.equals("") || value instanceof Character;
+        }
     }
-}
+
