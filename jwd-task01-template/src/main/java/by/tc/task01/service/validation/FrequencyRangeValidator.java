@@ -2,9 +2,6 @@ package by.tc.task01.service.validation;
 
 import by.tc.task01.service.ServiceCommand.ValidationCommand;
 
-/**
- * Created by Y50-70 on 12.10.2017.
- */
 public class FrequencyRangeValidator implements ValidationCommand{
     public FrequencyRangeValidator(){}
     @Override

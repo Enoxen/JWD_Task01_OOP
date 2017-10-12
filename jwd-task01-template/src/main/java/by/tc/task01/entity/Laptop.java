@@ -24,7 +24,8 @@ public class Laptop extends Appliance implements Serializable{
     @Override
     public void printData(){
         System.out.println("Laptop: Battery capacity= " + this.batteryCapacity + ", OS= " + this.os + ", Memory rom= "
-        + this.memoryRom + ", System Memory= " + this.systemMemory + ", Display Inches= " + this.displayInches);
+        + this.memoryRom + ", System Memory= " + this.systemMemory + ", Display Inches= " + this.displayInches +
+        " CPU = " + this.cpu);
     }
 
     @Override

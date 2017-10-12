@@ -6,14 +6,14 @@ import java.util.Map;
 public class Criteria<E> {
 
 	private Map<E, Object> criteria = new HashMap<E, Object>();
-	private String criteriaType;
+	private String applianceType;
 	public void add(E searchCriteria, Object value) {
 		criteria.put(searchCriteria, value);
 	}
 	public Map<E, Object> getAllCriteria(){return criteria;}
-	public String getCriteriaType(){return criteriaType;}
-	public void setCriteriaType(String type){
-		this.criteriaType = type;
+	public String getApplianceType(){return applianceType;}
+	public void setApplianceType(String type){
+		this.applianceType = type;
 	}
 
 }

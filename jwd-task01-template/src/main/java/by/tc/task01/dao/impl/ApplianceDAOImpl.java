@@ -1,32 +1,33 @@
 package by.tc.task01.dao.impl;
 
 import by.tc.task01.dao.ApplianceDAO;
+import by.tc.task01.dao.Command.ApplianceDirector;
 import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.criteria.Criteria;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ApplianceDAOImpl implements ApplianceDAO{
 
 	@Override
 	public <E> Appliance find(Criteria<E> criteria) {
-		String objectStr = "";
-		String criteriaType = criteria.getAllCriteria().keySet().iterator().next().getClass().getName();
-		//System.out.println(criteriaType);
+		String applianceStr;
+		String str = criteria.getApplianceType();
 		Scanner scan;
+		ApplianceDirector director = new ApplianceDirector();
+		Appliance appliance;
 		try {
-			FileReader file = new FileReader("D:\\Programming\\Курсы\\JWD_Task01_OOP\\jwd-task01-template\\src\\main\\resources\\appliances_db.txt");
+			FileReader file = new FileReader(".\\src\\main\\resources\\appliances_db.txt");
 			scan = new Scanner(file);
 			while (scan.hasNext()) {
-				objectStr = scan.nextLine();
-				if (objectStr.contains("Laptop")){
-					if(criteriaType.contains("SearchCriteria$Laptop")){
-
-					}
+				applianceStr = scan.nextLine();
+				if(isFound(applianceStr, criteria) && applianceStr.contains(str)) {
+					appliance = director.getCommand(criteria.getApplianceType()).execute(parseObjectString(applianceStr));
+					return appliance;
 				}
-
 			}
 		}
 		catch (FileNotFoundException e){
@@ -34,10 +35,33 @@ public class ApplianceDAOImpl implements ApplianceDAO{
 		}
 		return null;
 	}
-	
-	// you may add your own code here
-
+	private <E> boolean isFound(String applianceStr, Criteria<E> criteria){
+		String strCriteria = "";
+		String searchString = applianceStr.replace(';',',');
+		for(Object key : criteria.getAllCriteria().keySet()){
+			strCriteria = key.toString() + "=" + criteria.getAllCriteria().get(key).toString().toLowerCase() + ",";
+			if(!searchString.contains(strCriteria)){
+				return false;
+			}
+		}
+		return true;
+	}
+	private List<String> parseObjectString(String applianceStr){
+		List<String> parsedParams = new ArrayList<>();
+		String str = "";
+		for(int i = 0; i < applianceStr.length(); i++){
+			if(applianceStr.charAt(i) == '='){
+				int j = i + 1;
+				str = "";
+				while(applianceStr.charAt(j) != ',' && applianceStr.charAt(j) != ';') {
+					str += applianceStr.charAt(j);
+					j++;
+				}
+				i = j;
+				parsedParams.add(str);
+				str = "";
+			}
+		}
+		return parsedParams;
+	}
 }
-
-
-//you may add your own new classes

@@ -6,6 +6,5 @@ public class PrintApplianceInfo {
 	
 	public static void print(Appliance appliance) {
 		appliance.printData();
-		
 	}
 }

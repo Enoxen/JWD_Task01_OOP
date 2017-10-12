@@ -7,9 +7,6 @@ import by.tc.task01.service.validation.StringValidator;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Y50-70 on 12.10.2017.
- */
 public class ValidationDirector {
     private Map<String, ValidationCommand> map = new HashMap<>();
 

@@ -2,9 +2,6 @@ package by.tc.task01.service.validation;
 
 import by.tc.task01.service.ServiceCommand.ValidationCommand;
 
-/**
- * Created by Y50-70 on 12.10.2017.
- */
 public class NumberValidator implements ValidationCommand{
     public NumberValidator(){}
 
@@ -12,7 +9,7 @@ public class NumberValidator implements ValidationCommand{
     public boolean execute(Object value){
         return isValidNumber(value);
     }
-    public  boolean isValidNumber(Object value){
+    public static boolean isValidNumber(Object value){
         try {
             String valueType = value.getClass().getName();
             if (value instanceof Number) {
