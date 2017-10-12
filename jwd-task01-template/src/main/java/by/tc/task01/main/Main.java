@@ -75,7 +75,6 @@ public class Main {
 			PrintApplianceInfo.print(appliance);
 		}
 		else System.out.println("Ошибка запроса");
-
 	}
 
 }

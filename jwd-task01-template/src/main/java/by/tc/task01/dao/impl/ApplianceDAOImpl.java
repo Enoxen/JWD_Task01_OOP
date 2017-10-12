@@ -59,7 +59,6 @@ public class ApplianceDAOImpl implements ApplianceDAO{
 				}
 				i = j;
 				parsedParams.add(str);
-				str = "";
 			}
 		}
 		return parsedParams;
