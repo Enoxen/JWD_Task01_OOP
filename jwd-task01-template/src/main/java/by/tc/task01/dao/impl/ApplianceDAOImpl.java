@@ -16,7 +16,7 @@ public class ApplianceDAOImpl implements ApplianceDAO{
 	public <E> Appliance find(Criteria<E> criteria) {
 		String applianceStr;
 		String str = criteria.getApplianceType();
-		Scanner scan;
+		Scanner scan = null;
 		ApplianceDirector director = new ApplianceDirector();
 		Appliance appliance;
 		try {
@@ -32,6 +32,11 @@ public class ApplianceDAOImpl implements ApplianceDAO{
 		}
 		catch (FileNotFoundException e){
 			e.printStackTrace();
+		}
+		finally {
+			if(scan != null){
+				scan.close();
+			}
 		}
 		return null;
 	}
